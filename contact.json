@@ -1,0 +1,24 @@
+{
+  "contact": {
+    "firstname": "John",
+    "lastname": "Williams",
+    "email": "themuddygtor@gmail.com",
+    "favoritecolor": "green",
+    "birthday": "1985-10-15"
+  },
+  "contact2": {
+    "firstName": "Alex",
+    "lastName": "Vasko",
+    "email": "alexv@gmail.com",
+    "favoriteColor": "blue",
+    "birthday": "06/05/1998"
+  },
+  "contact3": {
+    "firstName": "Tara",
+    "lastName": "Vasko",
+    "email": "tara@gmail.com",
+    "favoriteColor": "purple",
+    "birthday": "03/22/1999"
+  }
+  
+}

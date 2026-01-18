@@ -10,6 +10,9 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "body-parser": "^2.2.2",
+    "dotenv": "^17.2.3",
+    "env": "^0.0.2",
     "express": "^5.2.1",
     "mongodb": "^7.0.0"
   },
