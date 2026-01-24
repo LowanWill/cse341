@@ -1,12 +1,13 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const mongodb = require('./db/connect');
 
 const port = process.env.PORT || 3000;
 const app = express();
 
-// Body parsers MUST come first - before any routes
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// Use body-parser explicitly
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
