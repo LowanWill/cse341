@@ -1,11 +1,81 @@
 //Localhost ###  
 GET http://localhost:3000/contacts
+###
 GET http://localhost:3000/contacts/696c68bfdd048f0e14ee379b
+###
 GET http://localhost:3000/contacts/696c68f4dd048f0e14ee379c
-GET http://localhost:3000/contacts/696c6911dd048f0e14ee379d
+###
+GET http://localhost:3000/contacts/696c6922dd048f0e14ee379d
 
-//Productions Deploy ### 
+ //Create Contact
+###
+POST http://localhost:3000/contacts
+Content-Type: application/json
+
+{
+    "firstName": "Jackie",
+    "lastName": "Smith",
+    "email": "jackie.smith@example.com",
+    "favoriteColor": "brown",
+    "birthday": "01/08/1995"
+}
+
+//Update Contact 
+###
+PUT http://localhost:3000/contacts/696c68f4dd048f0e14ee379c
+Content-Type: application/json
+
+{
+    "firstName": "Alex",
+    "lastName": "Vasko",
+    "email": "alex@gmail.com",
+    "favoriteColor": "new color",
+    "birthday": "06/05/1998"
+}
+
+//Delete Contact
+###
+DELETE http://localhost:3000/contacts/69752c9055b240af82d3304e
+
+
+//Production Deploy 
+### 
+
 GET https://cse341.onrender.com/contacts
+
+###
 GET https://cse341.onrender.com/contacts/696c68bfdd048f0e14ee379b
+###
 GET https://cse341.onrender.com/contacts/696c68f4dd048f0e14ee379c
+###
 GET https://cse341.onrender.com/contacts/696c6911dd048f0e14ee379d
+
+
+//Add new contact
+###
+POST https://cse341.onrender.com/contacts
+Content-Type: application/json
+
+{
+    "firstName": "Trish",
+    "lastName": "Smith",
+    "email": "trish.smith@example.com",
+    "favoriteColor": "yellow",
+    "birthday": "01/05/1995"
+}
+
+//Update Contact
+###
+PUT https://cse341.onrender.com/contacts/696c68f4dd048f0e14ee379c
+Content-Type: application/json
+{
+    "firstName": "Alex",
+    "lastName": "Vasko",
+    "email": "alex@gmail.com",
+    "favoriteColor": "magenta",
+    "birthday": "06/05/1998"
+}
+
+//Delete Contact
+###
+DELETE https://cse341.onrender.com/contacts/696c6911dd048f0e14ee379d
