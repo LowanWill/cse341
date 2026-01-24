@@ -28,8 +28,10 @@ const getSingle = (req, res, next) => {
 
 const createContact = async (req, res) => {
     try {
+        console.log('Received body:', req.body);
+        
         if (!req.body || !req.body.firstName) {
-            return res.status(400).json({ message: 'Request body is missing or invalid' });
+            return res.status(400).json({ message: 'Request body is missing or invalid', body: req.body });
         }
         
         const contact = {
@@ -41,40 +43,64 @@ const createContact = async (req, res) => {
         };
         
         const response = await mongodb.getDb().collection('contacts').insertOne(contact);
+        console.log('Insert response:', response);
+        
         if (response.acknowledged) {
             res.status(201).json(response); 
         } else {
-            res.status(500).json(response.error || 'Some error occurred while creating the contact.');
+            res.status(500).json({ message: 'Some error occurred while creating the contact.', response });
         }
     } catch (err) {
-        res.status(500).json({ message: err.message });
+        console.error('Create contact error:', err);
+        res.status(500).json({ message: err.message, stack: err.stack, name: err.name });
     }
 };
 
 const updateContact = async (req, res) => {
-    const userId = new ObjectId(req.params.id);
-    const contact = {   
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        favoriteColor: req.body.favoriteColor,
-        birthday: req.body.birthday
-    };
-    const response = await mongodb.getDb().collection('contacts').replaceOne({ _id: userId }, contact);
-    if (response.modifiedCount > 0) {
-        res.status(204).send(); 
-    } else {
-        res.status(500).json(response.error || 'Some error occurred while updating the contact.');
-    }   
+    try {
+        console.log('Update body:', req.body);
+        
+        if (!req.body || !req.body.firstName) {
+            return res.status(400).json({ message: 'Request body is missing or invalid' });
+        }
+        
+        const userId = new ObjectId(req.params.id);
+        const contact = {
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            email: req.body.email,
+            favoriteColor: req.body.favoriteColor,
+            birthday: req.body.birthday
+        };
+        
+        const response = await mongodb.getDb().collection('contacts').replaceOne({ _id: userId }, contact);
+        console.log('Update response:', response);
+        
+        if (response.modifiedCount > 0) {
+            res.status(204).send();
+        } else {
+            res.status(500).json({ message: 'Some error occurred while updating the contact.', response });
+        }
+    } catch (err) {
+        console.error('Update contact error:', err);
+        res.status(500).json({ message: err.message, stack: err.stack, name: err.name });
+    }
 };
 
 const deleteContact = async (req, res) => {
-    const userId = new ObjectId(req.params.id);
-    const response = await mongodb.getDb().collection('contacts').deleteOne({ _id: userId });
-    if (response.deletedCount > 0) {
-        res.status(204).send(); 
-    } else {
-        res.status(500).json(response.error || 'Some error occurred while deleting the contact.');
+    try {
+        const userId = new ObjectId(req.params.id);
+        const response = await mongodb.getDb().collection('contacts').deleteOne({ _id: userId });
+        console.log('Delete response:', response);
+        
+        if (response.deletedCount > 0) {
+            res.status(204).send();
+        } else {
+            res.status(500).json({ message: 'Some error occurred while deleting the contact.', response });
+        }
+    } catch (err) {
+        console.error('Delete contact error:', err);
+        res.status(500).json({ message: err.message, stack: err.stack, name: err.name });
     }
 };
 
@@ -83,5 +109,5 @@ module.exports = {
   getSingle,
   createContact,
   updateContact,
-  deleteContact
+  deleteContact,
 };
