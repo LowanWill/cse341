@@ -29,13 +29,13 @@ Content-Type: application/json
     "firstName": "Alex",
     "lastName": "Vasko",
     "email": "alex@gmail.com",
-    "favoriteColor": "new color",
+    "favoriteColor": "grey",
     "birthday": "06/05/1998"
 }
 
 //Delete Contact
 ###
-DELETE http://localhost:3000/contacts/69752c9055b240af82d3304e
+DELETE http://localhost:3000/contacts/69753a9de6e7d557c1877b6a
 
 
 //Production Deploy 
@@ -78,4 +78,4 @@ Content-Type: application/json
 
 //Delete Contact
 ###
-DELETE https://cse341-1-6b4g.onrender.com/contacts/697537ce450d62fe0540418d
+DELETE https://cse341-1-6b4g.onrender.com/contacts/69753af6450d62fe0540418e
